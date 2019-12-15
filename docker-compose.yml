@@ -4,13 +4,6 @@ services:
     image: 'postgres'
   redis:
     image: 'redis'
-  ngnix:
-    restart: always 
-    build:
-      dockerfile: Dockerfile.dev
-      context: ngnix
-    ports:
-      - '90:80'
   api:
     build:
       context: ./server
@@ -40,4 +33,10 @@ services:
     volumes:
       - '/app/node_modules'
       - './worker:/app'
-  
+  ngnix:
+    restart: always 
+    build:
+      dockerfile: Dockerfile.dev
+      context: ngnix
+    ports:
+      - '100:80'
